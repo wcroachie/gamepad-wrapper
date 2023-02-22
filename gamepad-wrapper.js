@@ -2,19 +2,21 @@
 
   window["~"+document.currentScript.src] = "!"+arguments.callee.toString()+"()";
 
-  Object.defineProperty(Array.prototype,"pull",{
-    enumerable  : false,
-    value       : function pull(){
-                    var itemsToPull = [...arguments];
-                    itemsToPull.forEach((item)=>{
-                      var index = this.indexOf(item);
-                      if(index>-1){
-                        this.splice(index,1);
-                      }
-                    });
-                    return this.length;
-                  },
-  });
+  if(!Array.prototype.pull){
+    Object.defineProperty(Array.prototype,"pull",{
+      enumerable  : false,
+      value       : function pull(){
+                      var itemsToPull = [...arguments];
+                      itemsToPull.forEach((item)=>{
+                        var index = this.indexOf(item);
+                        if(index>-1){
+                          this.splice(index,1);
+                        }
+                      });
+                      return this.length;
+                    },
+    });
+  }
 
   addEventListener("gamepadconnected",function(e){
     if(typeof window["ongamepadconnected"] === "function"){
@@ -104,7 +106,5 @@
     console.info("gamepad disconnected");
     console.log(window.gamepads);
   };
-
-
-
+  
 }()
