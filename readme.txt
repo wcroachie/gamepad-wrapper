@@ -5,16 +5,25 @@ each GamepadProxy object looks like this:
 
 {
   axes    : [
+  
+    /* array of axes organized by their index as mapped to the original gamepad object */
     
-    value     : {number},   // value of the axis/joystick fed from native gamepad object
-    threshold : {number},   // you can define the threshold to the distance each axis should be from its neutral position before triggering the onchange function
-    onchange  : {function}, // fires when the value is above or below the threshold from neutral position
+    { /* example of arbitrary axis object */
+    
+      value     : {number},   // value of the axis/joystick fed from native gamepad object
+      threshold : {number},   // you can define the threshold to the distance each axis should be from its neutral position before triggering the onchange function
+      onchange  : {function}, // fires when the value is above or below the threshold from neutral position
+    },
+    
+    /* ...etc */
+    
   ],
   buttons : [
     
     /* array of buttons organized by their index as mapped to the original gamepad object */
     
-    { /* example of button object */
+    { /* example of arbitrary button object */
+    
       pressed         : {boolean},  // value of the button, whether it is pressed or not, fed from native gamepad object
       /* pseudo-handlers */
       onpressed       : {function}, // fires when the button is down
